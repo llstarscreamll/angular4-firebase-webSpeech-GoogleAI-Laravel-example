@@ -143,8 +143,8 @@ const foo = {
 @Component({
   selector: 'app-speech-request-detail',
   template: `
-  <div *ngIf="speechRequest !== null" class="text-left">
-    <h3 class="text-center">{{ speechRequest.name }}</h3>
+  <div *ngIf="speechRequest" class="text-left">
+    <h3 *ngIf="speechRequest.name" class="text-center">{{ speechRequest.name }}</h3>
 
     <div *ngIf="speechRequest.items">
       <ul class="list-group">

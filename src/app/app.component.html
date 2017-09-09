@@ -3,26 +3,33 @@
     Speech to text and AI
   </h1>
 
-  <button *ngIf="speechEnabled; else speechNotEnabled" class="btn" (click)="start($event)" [ngClass]="{ 'btn-primary': !recognizing, 'btn-danger': recognizing }">Speech here man!!</button>
+  <button *ngIf="speechEnabled; else speechNotEnabled" class="btn btn-lg" (click)="start($event)" [ngClass]="{ 'btn-primary': !recognizing, 'btn-danger': recognizing }">
+    Pulsa aquí para hablar
+  </button>
   <br>
 
   <div class="row mt-10">
 
-    <div class="col-xs-6 well">
-      <strong>Solicitud</strong>
-      <app-speech-request-detail [speechRequest]="speechRequest$ | async"></app-speech-request-detail>
+    <div class="col-sm-6">
+      <div class="well">
+        <strong>Solicitud</strong>
+        <app-speech-request-detail [speechRequest]="speechRequest$ | async"></app-speech-request-detail>
+      </div>
     </div>
 
-    <div class="col-xs-6 well">
-      <strong>Log</strong> <small>{{ status }}</small>
-      <div *ngFor="let msg of conversation">
-        <ng-container *ngIf="msg.sender === 'user'; else aiResponse">
-          <strong>{{ msg.sender }}</strong> - {{ msg.text }}
-        </ng-container>
+    <div class="col-sm-6">
+      <div class="well">
+        <strong>Log</strong> <small>{{ status }}</small>
+        <div></div>
+        <div *ngFor="let msg of conversation">
+          <ng-container *ngIf="msg.sender === 'user'; else aiResponse">
+            <strong>{{ msg.sender }}</strong> - {{ msg.text }}
+          </ng-container>
 
-        <ng-template #aiResponse>
-          <strong>{{ msg.sender }}</strong>- {{ msg.text }}
-        </ng-template>
+          <ng-template #aiResponse>
+            <strong>{{ msg.sender }}</strong>- {{ msg.text }}
+          </ng-template>
+        </div>
       </div>
     </div>
 
