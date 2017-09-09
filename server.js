@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const compression = require('compression');
+app.use(compression());
 
 // If an incoming request uses
 // a protocol other than HTTPS,
@@ -26,3 +28,7 @@ app.use(forceSSL());
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
+
+// Start the app by listening on the default
+// Heroku port
+app.listen(process.env.PORT || 8080);
