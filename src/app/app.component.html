@@ -1,27 +1,82 @@
 <div class="text-center">
   <h1 class="page-title">
     Speech to text and AI
+    <br>
+    <small>status: {{ status }}</small>
   </h1>
 
-  <button *ngIf="speechEnabled; else speechNotEnabled" class="btn btn-lg" (click)="start($event)" [ngClass]="{ 'btn-primary': !recognizing, 'btn-danger': recognizing }">
-    Pulsa aquí para hablar
+  <button *ngIf="speechEnabled; else speechNotEnabled" class="btn btn-lg" (click)="speech()" [ngClass]="{ 'btn-primary': !recognizing, 'btn-danger': recognizing }">
+    <i class="fa fa-microphone"></i>
   </button>
-  <br>
 
   <div class="row mt-10">
 
-    <div class="col-sm-6">
-      <div class="well">
-        <strong>Solicitud</strong>
-        <app-speech-request-detail [speechRequest]="speechRequest$ | async"></app-speech-request-detail>
-      </div>
-    </div>
+    <ng-container [ngSwitch]="status">
 
-    <div class="col-sm-6">
+      <div *ngSwitchCase="'idle'">
+        <div class="col-xs-10 col-xs-offset-1 well">
+          <h3>¡¡Pulsa el botón azul para hablar!!</h3>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="approving">
+
+        <div class="col-sm-6 panel">
+          <div class="panel-body">
+            <ul *ngIf="requestsSuggestions" class="list-group">
+              <li class="list-group-item"><strong>Concidencias</strong></li>
+              <li class="list-group-item" *ngFor="let request of requestsSuggestions; let i = index">
+                <strong>{{ i + 1 }}</strong> <span>{{ request.name }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+
+      <ng-container *ngSwitchCase="creatingOrAddingItems">
+        <div class="col-sm-6">
+          <div class="well">
+            <strong>Solicitud</strong>
+            <app-speech-request-detail [speechRequest]="speechRequest$ | async"></app-speech-request-detail>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'action.finish-request'">
+        <div class="col-xs-8 col-xs-offset-2 panel panel-default">
+          <div class="panel-body">
+            <div class="success-icon text-success">
+              <i class="glyphicon glyphicon-ok"></i>
+            </div>
+            <span class="label label-success">Solicitud creada exitosamente!!</span>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'action.cancel-request'">
+        <div class="col-xs-8 col-xs-offset-2 panel panel-default">
+          <div class="panel-body">
+            <div class="success-icon text-danger">
+              <i class="glyphicon glyphicon-remove"></i>
+            </div>
+            <span class="label label-danger">Tu solicitud ha sido cancelada!!</span>
+          </div>
+        </div>
+      </ng-container>
+
+      <div *ngSwitchDefault>
+        
+      </div>
+
+    </ng-container>
+
+    <div *ngIf="status !== 'idle'" class="col-xs-10 col-xs-offset-1 col-sm-6">
       <div class="well">
-        <strong>Log</strong> <small>{{ status }}</small>
-        <div></div>
-        <div *ngFor="let msg of conversation">
+        <strong>Log</strong><br>
+        <small>{{ agentService.sessionId }}</small>
+        <div *ngFor="let msg of conversation" class="text-left">
           <ng-container *ngIf="msg.sender === 'user'; else aiResponse">
             <strong>{{ msg.sender }}</strong> - {{ msg.text }}
           </ng-container>
@@ -36,6 +91,7 @@
   </div>
 
 
+  <!-- Speech not enabled msg -->
   <ng-template #speechNotEnabled>
     <div class="col-xs-10 col-xs-offset-1 alert alert-warning">
       Reconocimiento de voz no soportado en el navegador

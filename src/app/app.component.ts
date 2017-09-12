@@ -20,10 +20,13 @@ export class AppComponent implements OnInit, OnDestroy {
   public speechRequest$: Observable<any>;
   public status = 'idle';
   private speechRequest: any;
+  private restartSession = false;
+  // here we store the requests suggestions to make approvals
+  public requestsSuggestions: any[];
 
   public constructor(
     private speechService: SpeechService,
-    private agentService: AgentService,
+    public agentService: AgentService,
     private speechRequestService: SpeechRequestService,
   ) { }
 
@@ -31,7 +34,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.speechRequest$ = this.speechRequestService.getLatestSpeechRequest();
   }
 
-  public start() {
+  public speech() {
+    if (this.restartSession === true) {
+      this.agentService.restart();
+      this.restartSession = false;
+    }
+
     this.serviceSubscription$ = this.speechService
       .init()
       .subscribe(msg => {
@@ -64,30 +72,39 @@ export class AppComponent implements OnInit, OnDestroy {
   private interceptUserResponse(query): string {
     switch (this.status) {
 
-      // when current state (intent) is nombre-solicitud, that means
-      // that next step is add items to current speech request, so
-      // to be able to show items sugestions and added items, the
-      // API needs to know the speech request id ($key on firebase),
-      // so we will add the key to the user input
-      case 'nombre-solicitud': {
-        query = query + ':' + this.speechRequest.$key;
-        console.log('append speech request id to query: ', query);
-        return query;
-      }
-
       default: {
         return query;
       }
+
     }
   }
 
   private interceptAiResponse(response: any): string {
-    this.status = response.result.metadata.intentName;
     const incomplete: boolean = response.result.actionIncomplete;
+    this.status = response.result.action;
+    let responseSpeech = response.result.fulfillment.speech;
 
     switch (response.result.action) {
+
+      case 'action.finish-request':
+      case 'action.cancel-request': {
+        this.restartSession = true;
+        this.speechRequest$ = null;
+      } break;
+
+      case 'action.approve-request': {
+        if (incomplete === false) {
+          this.requestsSuggestions = response.result.fulfillment.data.matches;
+          console.log('requestsSuggestions', this.requestsSuggestions);
+        }
+
+      } break;
+
+      case 'action.select-request-to-approve': {
+        this.requestsSuggestions = [];
+      } break;
+
       case 'action.create-request': {
-        const responseSpeech = response.result.fulfillment.speech;
 
         if (incomplete !== true) {
           const speechRequestId = response.result.fulfillment.data.request_id;
@@ -98,22 +115,57 @@ export class AppComponent implements OnInit, OnDestroy {
 
         console.log(responseSpeech);
         console.log('create request id = ', this.currentRequestId);
-
-        return responseSpeech;
-      }
+      } break;
 
       default: {
-        return response.result.fulfillment.speech;
-      }
-    }
-  }
+        responseSpeech = response.result.fulfillment.speech;
+      } break;
 
-  public get speechEnabled(): boolean {
-    return !('webkitSpeechRecognition' in window) ? false : true;
+    }
+
+    return responseSpeech;
   }
 
   public ngOnDestroy() {
     this.serviceSubscription$.unsubscribe();
+  }
+
+  public get requestsSuggestionsArray(): any[] {
+    const data = [];
+    console.log('suggestions', this.requestsSuggestions);
+
+    Object.keys(this.requestsSuggestions).forEach(key => {
+      data.push(this.requestsSuggestions[key]);
+    });
+
+    console.log('obj keys', Object.keys(this.requestsSuggestions));
+    console.log('data', data);
+
+    return data;
+  }
+
+  public get creatingOrAddingItems(): string {
+    const creatingStatus = ['action.create-request', 'action.add-item-to-request', 'input.unknown'];
+
+    if (creatingStatus.indexOf(this.status) > -1) {
+      return this.status;
+    }
+
+    return '';
+  }
+
+  public get approving(): string {
+    const approvingStatus = ['action.approve-request', 'action.select-request-to-approve'];
+
+    if (approvingStatus.indexOf(this.status) > -1) {
+      return this.status;
+    }
+
+    return '';
+  }
+
+  public get speechEnabled(): boolean {
+    return !('webkitSpeechRecognition' in window) ? false : true;
   }
 
 }

@@ -11,7 +11,7 @@ export class AgentService {
   private clientToken = 'd2ebda2187834d54a6cbb52473d2ea6b';
   private developerToken = '9296e5624e2244cebf07c99e65782086';
   private endPoint = 'https://api.api.ai/v1/query?v=20150910';
-  private sessionId: string;
+  public sessionId: string;
 
   public constructor(private http: Http) {
     this.headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
@@ -34,7 +34,7 @@ export class AgentService {
       {
         'query': query,
         'lang': 'es',
-        'sessionId': '1234567890'
+        'sessionId': this.sessionId
       },
       { headers: this.headers }
       ).map((data: Response) => { console.log(data.json()); return data.json(); });
