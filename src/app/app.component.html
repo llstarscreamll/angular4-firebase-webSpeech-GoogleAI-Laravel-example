@@ -21,9 +21,9 @@
 
       <div *ngSwitchCase="approving">
 
-        <div class="col-sm-6 panel">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6 panel">
           <div class="panel-body">
-            <ul *ngIf="requestsSuggestions" class="list-group">
+            <ul *ngIf="requestsSuggestions && requestsSuggestions.length > 0" class="list-group">
               <li class="list-group-item"><strong>Concidencias</strong></li>
               <li class="list-group-item" *ngFor="let request of requestsSuggestions; let i = index">
                 <strong>{{ i + 1 }}</strong> <span>{{ request.name }}</span>
@@ -36,7 +36,7 @@
       </div>
 
       <ng-container *ngSwitchCase="creatingOrAddingItems">
-        <div class="col-sm-6">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6">
           <div class="well">
             <strong>Solicitud</strong>
             <app-speech-request-detail [speechRequest]="speechRequest$ | async"></app-speech-request-detail>
@@ -45,7 +45,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="'action.finish-request'">
-        <div class="col-xs-8 col-xs-offset-2 panel panel-default">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6 panel panel-default">
           <div class="panel-body">
             <div class="success-icon text-success">
               <i class="glyphicon glyphicon-ok"></i>
@@ -56,7 +56,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="'action.cancel-request'">
-        <div class="col-xs-8 col-xs-offset-2 panel panel-default">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6 panel panel-default">
           <div class="panel-body">
             <div class="success-icon text-danger">
               <i class="glyphicon glyphicon-remove"></i>
