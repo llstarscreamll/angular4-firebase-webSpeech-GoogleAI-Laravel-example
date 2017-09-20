@@ -1,28 +1,17 @@
-# SpeechAi
+# Web Speech API y Google AI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.7.
+Este es un sencillo prototipo donde es usada la [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API), un agente de [inteligencia artificial de Google](https://api.ai/), una web app en [Angular 4](https://angular.io/), un backend hecho en [Laravel 5.5](https://laravel-news.com/category/laravel-5.5) y [Firebase](https://firebase.google.com). Los casos de uso que aquí se demuestran son la _"Creación de una Solicitud"_ y _"Aprobación de solicutd"_.
 
-## Development server
+## Crear una solicitud de compra
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Una solicitud de compra tiene un nombre, un estado (abierta, finizalizada o rechazada) y artículos asociados, dichos artículos viven en una base de datos en Firebase, de modo que cuando el usuario menciona las palabras _"añadir 4 peras"_, se añaden 4 artículos con nombre _"peras"_ a dicha solicitud y una vez el usuario dice _"finalizar solicitud"_ o _"cancelar solicitud"_ la solicitud en cuestión se actualiza con el respectivo estado.
 
-## Code scaffolding
+Si al mencionar un artículo con nombre _"mouse"_ y en la base de datos tenemos los artículos _"mouse inalámbrico"_ y _"mouse estándar"_, la app mostrará dichas coincidencias para que el usuario diga el nombre exacto del producto que desea añadir a la solicitud.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Aprobar solicitudes
 
-## Build
+Las solicitudes que son creadas en la base de datos se pueden aprobar con comandos de voz también, si el usuario dice _"aprobar solicitud compra de computadores"_, se realizará la busqueda en la base de datos de una solicitud con el nombre _"compra de computadores"_, si hay una sola coincidencia, la app aprobará dicha solicitud, si hay mas de una coincidencia, entonces las mostrará y el usuario deberá decir cual de ellas aprobar por el orden en que son presentadas, por ejemplo _"aprobar la segunda"_. Si no hay coincidencias la app te avisará de que nada ha encontrado.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Flow de la app
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![flow chart](https://user-images.githubusercontent.com/2442445/30672502-6d62ba3e-9e32-11e7-9f12-a4f0863e3644.jpg)
