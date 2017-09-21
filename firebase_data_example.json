@@ -1,0 +1,257 @@
+{
+  "items" : [ null, {
+    "name" : "computador"
+  }, {
+    "name" : "computador Toshiba"
+  }, {
+    "name" : "teclados"
+  }, {
+    "name" : "monitor"
+  }, {
+    "name" : "mouse inalámbrico"
+  }, {
+    "name" : "mouse estándar"
+  } ],
+  "speech_requests" : {
+    "1" : {
+      "name" : "compra de computadores",
+      "status" : "approved"
+    },
+    "2" : {
+      "name" : "compra tablets",
+      "status" : "approved"
+    },
+    "3" : {
+      "name" : "compra de manzanas"
+    },
+    "-Ktw5LjrhEsy6KeWGaxZ" : {
+      "items" : {
+        "-Ktw5T8VPCdqKm83pngn" : {
+          "item" : {
+            "4" : {
+              "name" : "peras"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ktw5Y7J4JdasNLx4BIz" : {
+          "item" : {
+            "3" : {
+              "name" : "manzana"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ktw6J_7mbHHhko0NXwC" : {
+          "item" : {
+            "5" : {
+              "name" : "mouse inalámbrico"
+            }
+          },
+          "quantity" : 4
+        }
+      },
+      "name" : "compra de computadores",
+      "status" : "approved"
+    },
+    "-Ktwfne1Tx_XBlF3-YiD" : {
+      "name" : "ejemplo",
+      "status" : "approved"
+    },
+    "-KtwiSxIgVuhUqZR9OUc" : {
+      "items" : {
+        "-KtwicP4bhOjFnduwwf1" : {
+          "item" : [ null, {
+            "name" : "computador"
+          } ],
+          "quantity" : 4
+        }
+      },
+      "name" : "tablets para aprender",
+      "status" : "approved"
+    },
+    "-Ktwk6gGRs-yCeOG3O0w" : {
+      "items" : {
+        "-Ktwk8xPsj2PUJLRreRv" : {
+          "item" : {
+            "4" : {
+              "name" : "peras"
+            }
+          },
+          "quantity" : 4
+        },
+        "-KtwkG1DBf7pzcrumapz" : {
+          "item" : {
+            "3" : {
+              "name" : "manzana"
+            }
+          },
+          "quantity" : 6
+        }
+      },
+      "name" : "compra 34",
+      "status" : "approved"
+    },
+    "-KtwoZoEBfYcANQle6Iz" : {
+      "name" : "compra de tablets"
+    },
+    "-KtwpDWW7-moCVL-pHat" : {
+      "items" : {
+        "-KtwpFW6Cfz5avmT3Rxu" : {
+          "item" : {
+            "4" : {
+              "name" : "peras"
+            }
+          },
+          "quantity" : 4
+        }
+      },
+      "name" : "compra 34",
+      "status" : "finished"
+    },
+    "-Ku-TXWxKaEUBX4fZ0HF" : {
+      "items" : {
+        "-Ku-TZx-b06qEO3cW8JZ" : {
+          "item" : {
+            "4" : {
+              "name" : "peras"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ku-TbHS4kqHs5K52YYc" : {
+          "item" : {
+            "5" : {
+              "name" : "mouse inalámbrico"
+            }
+          },
+          "quantity" : 4
+        }
+      },
+      "name" : "compra de computadores",
+      "status" : "finished"
+    },
+    "-Ku-UjQBZosnIV897k7r" : {
+      "items" : {
+        "-Ku-UlqGjmyYCguhS_lH" : {
+          "item" : {
+            "4" : {
+              "name" : "peras"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ku-UrQKFqFwCuf1pv2b" : {
+          "item" : {
+            "5" : {
+              "name" : "mouse inalámbrico"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ku-UukJuawwgU9fpVB9" : {
+          "item" : {
+            "3" : {
+              "name" : "manzana"
+            }
+          },
+          "quantity" : 10
+        }
+      },
+      "name" : "compra de computadores"
+    },
+    "-Ku-V_tBmaEYeqiTuzv3" : {
+      "items" : {
+        "-Ku-VcGFPY_XgDHYuuI2" : {
+          "item" : {
+            "3" : {
+              "name" : "teclados"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ku-ViB9bBkV_Omb_hx5" : {
+          "item" : {
+            "5" : {
+              "name" : "mouse inalámbrico"
+            }
+          },
+          "quantity" : 4
+        }
+      },
+      "name" : "compra de computadores",
+      "status" : "approved"
+    },
+    "-Ku-WPsybudzsHlyga_D" : {
+      "items" : {
+        "-Ku-WUEMMqsJN-Ft9aTm" : {
+          "item" : {
+            "2" : {
+              "name" : "computador Toshiba"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ku-WYXV2nylKaUmpPWx" : {
+          "item" : {
+            "4" : {
+              "name" : "monitor"
+            }
+          },
+          "quantity" : 5
+        },
+        "-Ku-WeDBVXcf8ratCXme" : {
+          "item" : {
+            "5" : {
+              "name" : "mouse inalámbrico"
+            }
+          },
+          "quantity" : 10
+        },
+        "-Ku-WgMO_hwl-dIk4esL" : {
+          "item" : {
+            "3" : {
+              "name" : "teclados"
+            }
+          },
+          "quantity" : 4
+        }
+      },
+      "name" : "compra de computadores",
+      "status" : "finished"
+    },
+    "-Ku-XtbfUNdXOCrzbA9o" : {
+      "name" : "compra de computadores"
+    },
+    "-Ku-odmgIebHTTjCjyOV" : {
+      "items" : {
+        "-Ku-ogZLRhRSMAPtprqw" : {
+          "item" : {
+            "3" : {
+              "name" : "teclados"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ku-okuB2k7Gg0PHEULP" : {
+          "item" : {
+            "2" : {
+              "name" : "computador Toshiba"
+            }
+          },
+          "quantity" : 4
+        },
+        "-Ku-orfAyaw0qO9sZAtt" : {
+          "item" : {
+            "5" : {
+              "name" : "mouse inalámbrico"
+            }
+          },
+          "quantity" : 10
+        }
+      },
+      "name" : "compra de computadores",
+      "status" : "finished"
+    }
+  }
+}

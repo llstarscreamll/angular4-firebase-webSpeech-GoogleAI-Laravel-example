@@ -8,8 +8,10 @@ import 'rxjs/add/operator/catch';
 export class AgentService {
 
   private headers: Headers;
-  private clientToken = 'd2ebda2187834d54a6cbb52473d2ea6b';
-  private developerToken = '9296e5624e2244cebf07c99e65782086';
+
+  // put your Google AI agent developer token here
+  private developerToken = '9296e5624e2244cebf07c99e65782086a';
+
   private endPoint = 'https://api.api.ai/v1/query?v=20150910';
   public sessionId: string;
 
